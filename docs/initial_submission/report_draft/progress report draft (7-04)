@@ -1,0 +1,113 @@
+
+# CSIT314 Progress Report 
+**Event Management System**  
+
+---
+
+## 1. Project Overview
+This group project involves the design and development of an Event Management System, intended to simulate platforms like Eventbrite or Humanitix. The application will allow general users to register and log in, browse events, purchase tickets, and receive notifications. Event organisers will be able to create and manage events, view attendees, and access basic analytics and payment features.
+
+The system is being developed as part of the CSIT314 Systems Development Methodologies subject and follows an iterative development lifecycle with agile practices integrated throughout the semester.
+
+---
+
+## 2. Development Methodology
+After evaluating multiple project management models, the group adopted **Scrum** due to its structured sprint planning, suitability for collaborative workflows, and alignment with the semester schedule. Scrum encourages regular feedback and short delivery cycles, which is appropriate for the practical nature of the system and frequent deliverables.
+
+### Sprint Calendar
+| Sprint | Dates            | Focus                                                                 |
+|--------|------------------|------------------------------------------------------------------------|
+| 1      | Apr 1 – Apr 12   | Finalise user stories, assign roles, set up GitHub repo, UI mockups     |
+| 2      | Apr 15 – Apr 26  | Backend setup, frontend login/register, define UML diagrams             |
+| 3      | Apr 29 – May 10  | Event listing, event creation, registration functionality               |
+| 4      | May 13 – May 24  | Notifications, payment mock logic, organiser dashboard features         |
+| 5      | May 27 – May 31  | Testing, UI polishing, responsiveness fixes                             |
+| 6      | Jun 3 – Jun 7    | Finalise user manual, full documentation, final deployment              |
+
+### Tools Used
+- **GitHub Projects** – Task tracking, sprint planning, documentation versioning
+- **GitHub Actions** – CI/CD pipeline (planned integration)
+- **Node.js (Express)** – Backend framework
+- **HTML/CSS/JS** – Frontend (to be integrated)
+- **Figma** – UI wireframes and mockups (initial stage)
+
+---
+
+## 3. Extended Group Roles
+Each member was assigned a primary role and secondary responsibilities, with expectations clearly outlined to maintain accountability and ensure coverage across all required deliverables.
+
+### Chelsea – Project Manager / Documentation Lead / Backend Support
+**Primary Responsibilities:**
+- Oversaw all sprint planning, timeline coordination, and internal group communication
+- Set up and maintained GitHub repository, project board, and issue tracking system
+- Drafted core documentation including user stories, methodology, sprint schedule, and team roles
+- Authored and formatted meeting minutes (Weeks 4–6), and maintained documentation consistency
+- Created initial backend scaffold using Express.js and tested basic routing endpoints
+
+**Support & Additional Tasks:**
+- Conducted quality checks on other member submissions for alignment with assessment standards
+- Managed document styling, formatting, and overall presentation of the final report
+- Monitored GitHub updates, ensuring group contributions were tracked and committed properly
+- Served as contingency developer in backend/data script areas where needed
+
+### Tamim – UML Lead / Technical Analyst / Backend Planning
+**Primary Responsibilities:**
+- Designed the project’s core UML diagrams (Use Case and Class diagrams submitted by Week 6)
+- Drafted logic models to map out system behaviour and backend architecture
+- Worked closely with the project manager to align visual representations with user story flows
+
+**Support & Additional Tasks:**
+- Scheduled to complete the Sequence Diagram for submission in Week 7
+- Provided commentary on backend-frontend integration planning based on early logic structures
+- Reviewed potential technical limitations and flagged areas needing scope adjustment
+
+### Zuhor – Frontend Developer / UI Design / Integration Coordinator
+**Primary Responsibilities:**
+- Assigned responsibility for building and styling the frontend (login, register, homepage layout)
+- Tasked with providing responsive HTML/CSS pages and/or UI mockups
+- Expected to coordinate visual alignment with the backend's planned outputs and routing structure
+
+**Support & Additional Tasks:**
+- Required to submit screenshots and wireframes to be included in the final report and user manual
+- Design interface elements to reflect user stories and flow diagrams created by Tamim and Chelsea
+- Responsible for capturing event listing interactions and user authentication front-facing actions
+
+### Sara – Backend Developer / Data Script Lead / API Documentation (Unconfirmed)
+**Primary Responsibilities:**
+- Initially assigned backend responsibilities including user login, ticket purchase, and event creation
+- Planned to assist in generating dummy data for early database population (users, organisers)
+- Expected to contribute backend screenshots and codebase explanations for the report
+
+**Support & Additional Tasks:**
+- Due to a lack of follow-up after Week 5, backend implementation duties were reallocated
+- Role status remains unconfirmed; contributions may be integrated by PM if not submitted by Week 7
+
+### Hafiza – User Manual Coordinator / QA Assistant / Testing Support
+**Primary Responsibilities:**
+- Assigned to develop the user manual during later sprints based on system screenshots and walkthroughs
+- Tasked with writing clear step-by-step guides for end-users interacting with the platform
+- Provided UX feedback on drafts of interface flow and button placements
+
+**Support & Additional Tasks:**
+- Expected to contribute during Week 7 and 8 once system functionality and screenshots become available
+- Assist in light testing of frontend/backend features for usability and clarity
+- Support formatting of user-facing documentation to align with accessibility best practices
+
+---
+
+## 4. Current Progress and System Evidence
+As of Week 6, the following components have been completed or are in progress:
+
+- **Backend Scaffold:** Express server structure with test routes established. Includes file hierarchy for routes, controllers, and configuration.
+- **GitHub Repository:** Project board created, tasks and sprints actively maintained.
+- **User Stories:** INVEST-compliant user stories completed and formatted for inclusion.
+- **Meeting Logs:** Documented and committed for Weeks 4, 5, and 6.
+- **UML Diagrams:** Use Case and Class diagrams submitted. Sequence diagram in progress and expected by Week 7.
+- **Frontend:** Basic planning started. No confirmed code or screenshots submitted.
+- **User Manual:** Not started; Hafiza's role clarified for contribution beginning Week 7.
+- **Dummy Data Script:** Planned for Sprint 4. If not completed by backend, will be written by PM or documentation lead as contingency.
+
+**GitHub Link:** [https://github.com/auweii/csit314-event-management-system](https://github.com/auweii/csit314-event-management-system)
+
+---
+
