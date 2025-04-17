@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cancel Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #710261;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 4rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .buttons button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .cancel {
+      background-color: #710261;
+      color: white;
+    }
+
+    .keep {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .cancel:hover {
+      background-color: #57014a;
+    }
+
+    .keep:hover {
+      background-color: #bbb;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Our logo</div>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="profile.html">Profile</a>
+      <a href="bookings.html">My Bookings</a>
+      <a href="register.html">Sign Up</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Cancel Booking?</h2>
+    <p>Are you sure you want to cancel your booking for <strong>"Jazz Night on the Rooftop"</strong>?</p>
+    <div class="buttons">
+      <button class="cancel" onclick="confirmCancel()">Yes, Cancel</button>
+      <button class="keep" onclick="window.location.href='bookings.html'">No, Go Back</button>
+    </div>
+  </div>
+
+  <script>
+    function confirmCancel() {
+      alert("Your booking has been cancelled and a confirmation has been sent to your email.");
+      window.location.href = "my-bookings.html"; 
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Booking | Jazz Night</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #710261;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .search-location {
+      display: flex;
+      gap: 1rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .search-location input {
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: none;
+      width: 200px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #f8f8f8;
+    }
+
+    .left {
+      flex: 1 1 55%;
+      min-width: 300px;
+    }
+
+    .right {
+      flex: 1 1 35%;
+      min-width: 280px;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: fit-content;
+    }
+
+    .ticket-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    button {
+      background-color: #710261;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    .auth-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    p {
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Our logo</div>
+    <div class="search-location">
+      <input type="text" placeholder="Search events..." />
+      <select name="location" id="location">
+        <option value="" disabled selected>Choose location</option>
+        <option value="sydney">Sydney</option>
+        <option value="melbourne">Melbourne</option>
+        <option value="brisbane">Brisbane</option>
+        <option value="perth">Perth</option>
+        <option value="adelaide">Adelaide</option>
+      </select>
+    </div>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="#">Events</a>
+      <a href="profile.html">Profile</a>
+      <a href="#">My Bookings</a>
+      <a href="register.html">Sign Up</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <h1 style="text-align: center; margin-top: 2rem;">Jazz Night on the Rooftop</h1>
+
+  <div class="container">
+    <div class="left">
+      <h2>Event Details</h2>
+      <p><strong>Date:</strong> Saturday, April 27, 2025</p>
+      <p><strong>Time:</strong> 7:00 PM</p>
+      <p><strong>Location:</strong> 123 Jazz St, Sydney</p>
+      <p><strong>Hosted by:</strong> <a href="organiser-profile.html" style="color: #710261;">Jazz Sydney Collective</a></p>
+
+      <h2>Event Description</h2>
+      <p>
+        Enjoy an unforgettable night of smooth jazz under the stars at our rooftop venue. 
+        Featuring some of the city's most talented jazz musicians, this event promises to bring 
+        good vibes, great music, and an unbeatable atmosphere.
+      </p>
+    </div>
+
+<div class="right">
+    <h2>Book Your Tickets</h2>
+  
+    <form onsubmit="submitBooking(event)">
+      <label>Full Name:</label><br />
+      <input type="text" id="name" required style="width: 100%; margin-bottom: 1rem;" /><br />
+  
+      <label>Email Address:</label><br />
+      <input type="email" id="email" required style="width: 100%; margin-bottom: 1rem;" /><br />
+  
+      <label>Home Address:</label><br />
+      <input type="text" id="address" required style="width: 100%; margin-bottom: 1rem;" /><br />
+  
+      <label>Credit Card Number:</label><br />
+      <input type="text" id="card" required maxlength="16" style="width: 100%; margin-bottom: 1rem;" /><br />
+  
+      <label>Expiry Date:</label><br />
+      <input type="text" id="expiry" placeholder="MM/YY" required style="width: 100%; margin-bottom: 1rem;" /><br />
+  
+      <label>CVV:</label><br />
+      <input type="password" id="cvv" maxlength="4" required style="width: 100%; margin-bottom: 1.5rem;" /><br />
+  
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+
+  
+
+  <script>
+    let quantity = 1;
+    const pricePerTicket = 25;
+
+    function changeQuantity(change) {
+      quantity += change;
+      if (quantity < 1) quantity = 1;
+      document.getElementById('quantity').innerText = quantity;
+      document.getElementById('total').innerText = quantity * pricePerTicket;
+    }
+
+    function goToCheckout() {
+      window.location.href = "checkout.html";
+    }
+  </script>
+  <script>
+    function submitBooking(event) {
+      event.preventDefault();
+      alert("Booking confirmed! 🎉 Thank you, " + document.getElementById('name').value + ".");
+    }
+  </script>
+  
+</body>
+</html>
+
