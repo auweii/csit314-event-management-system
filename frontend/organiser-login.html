@@ -88,5 +88,32 @@
 
     </div>
   </div>
+  <script>
+    document.querySelector('.login-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = e.target[0].value;
+      const password = e.target[1].value;
+  
+      try {
+        const response = await fetch('http://localhost:3000/api/organisers/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+  
+        const result = await response.json();
+        alert(result.message);
+  
+        if (response.ok) {
+          // Redirect to dashboard or another page here
+          // window.location.href = "organiser-dashboard.html";
+        }
+  
+      } catch (error) {
+        alert('Error connecting to server.');
+      }
+    });
+  </script>
+  
 </body>
 </html>
