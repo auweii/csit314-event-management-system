@@ -9,9 +9,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Use the router from organisers.js
 app.use('/api/organisers', organisersRoutes);
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
 });
+

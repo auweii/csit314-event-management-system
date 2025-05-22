@@ -96,17 +96,19 @@
   
       try {
         const response = await fetch('http://localhost:3000/api/organisers/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, password })
+});
+
+        
   
         const result = await response.json();
         alert(result.message);
   
         if (response.ok) {
           // Redirect to dashboard or another page here
-          // window.location.href = "organiser-dashboard.html";
+           window.location.href = "organiser-profile.html";
         }
   
       } catch (error) {

@@ -30,4 +30,23 @@ router.post('/register', (req, res) => {
   res.status(201).json({ message: 'Organiser registered successfully' });
 });
 
+router.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required.' });
+  }
+if (!fs.existsSync(organisersFile)) {
+    return res.status(400).json({ message: 'No organisers registered yet.' });
+  }
+
+  const organisers = JSON.parse(fs.readFileSync(organisersFile));
+  const organiser = organisers.find(o => o.email === email && o.password === password);
+
+  if (!organiser) {
+    return res.status(401).json({ message: 'Invalid email or password.' });
+  }
+
+  res.json({ message: 'Login successful!', organiser });
+});
 module.exports = router;
