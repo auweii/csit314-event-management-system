@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create/Edit Event</title> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    /* ... (Your existing CSS for header and form from previous step) ... */
+
+    /* Ensure this CSS is present: */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #710261;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .search-location {
+      display: flex;
+      gap: 1rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .search-location input {
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: none;
+      width: 200px;
+    }
+
+    .search-location select {
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: none;
+        width: 200px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #f8f8f8;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      color: #555;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .form-group label span {
+      color: #710261;
+      margin-left: 0.25rem;
+    }
+
+    .form-group input[type="date"],
+    .form-group input[type="time"],
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+    }
+
+    .form-group.triple {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    button[type="submit"] {
+      background-color: #710261;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #5e005e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Our logo</div>
+
+    <div class="search-location">
+      <input
+        type="text"
+        placeholder="Search events..."
+        style="padding: 0.5rem; border-radius: 6px; border: none; width: 200px;"
+      />
+      <select name="location" id="location-select-header">
+        <option value="" disabled selected>Choose location</option>
+        <option value="sydney">Sydney</option>
+        <option value="melbourne">Melbourne</option>
+        <option value="brisbane">Brisbane</option>
+        <option value="perth">Perth</option>
+        <option value="adelaide">Adelaide</option>
+      </select>
+    </div>
+
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="OCreate-event.html">Create an Event</a>
+      <a href="organiser-profile.html">Profile</a>
+      <a href="Oevents.html">My Events</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <h2 id="formTitle">Create a New Event</h2> <form id="createEventForm">
+        <h3>Date & Time</h3>
+        <div class="form-group triple">
+          <div>
+            <label for="start-date">Start Date<span>*</span></label>
+            <input type="date" id="start-date" required>
+          </div>
+          <div>
+            <label for="start-time">Start Time<span>*</span></label>
+            <input type="time" id="start-time" required>
+          </div>
+          <div>
+            <label for="end-time">End Time</label>
+            <input type="time" id="end-time">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sessions">Session(s)<span>*</span></label>
+          <input type="text" id="sessions" required placeholder="e.g. Session 1, Session 2">
+        </div>
+
+        <h3>Event Details</h3>
+        <div class="form-group">
+            <label for="event-title">Event Title<span>*</span></label>
+            <input type="text" id="event-title" required placeholder="e.g. Annual Tech Conference">
+        </div>
+
+        <div class="form-group">
+            <label for="event-category">Category<span>*</span></label>
+            <select id="event-category" required>
+                <option value="" disabled selected>Select a Category</option>
+                <option value="music">Music</option>
+                <option value="educational">Educational</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+                <option value="travel">Travel</option>
+                <option value="food">Food</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label for="location-event">Location<span>*</span></label>
+          <select id="location-event" required>
+            <option value="" disabled selected>Please select one</option>
+            <option value="online">Online</option>
+            <option value="on-site">On-site</option>
+            <option value="hybrid">Hybrid</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="address-venue">Address/Venue (if on-site)</label>
+          <input type="text" id="address-venue" placeholder="e.g. Sydney Convention Centre, Hall 3">
+        </div>
+
+        <div class="form-group">
+          <label for="info">Additional Information<span>*</span></label>
+          <textarea id="info" rows="4" placeholder="Tell people more about your event..." required></textarea>
+        </div>
+
+        <button type="submit" id="submitButton">Save & Continue</button> </form>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const editId = urlParams.get('editId'); // Get the event ID from URL if editing
+
+        const formTitle = document.getElementById('formTitle');
+        const submitButton = document.getElementById('submitButton');
+        const organiserEmail = localStorage.getItem('organiserEmail');
+
+        // Form fields
+        const eventTitleInput = document.getElementById('event-title');
+        const eventCategorySelect = document.getElementById('event-category');
+        const startDateInput = document.getElementById('start-date');
+        const startTimeInput = document.getElementById('start-time');
+        const endTimeInput = document.getElementById('end-time');
+        const sessionsInput = document.getElementById('sessions');
+        const locationEventSelect = document.getElementById('location-event');
+        const addressVenueInput = document.getElementById('address-venue');
+        const infoTextarea = document.getElementById('info');
+        const createEventForm = document.getElementById('createEventForm');
+
+
+        if (!organiserEmail) {
+            alert("You must be logged in as an organiser to create or edit an event.");
+            window.location.href = "organiser-login.html";
+            return;
+        }
+
+        if (editId) {
+            formTitle.innerText = "Edit Event";
+            submitButton.innerText = "Update Event";
+
+            try {
+                // Fetch the event data to pre-fill the form
+                const response = await fetch(`http://localhost:3000/api/events?id=${editId}`);
+                const eventToEdit = await response.json();
+
+                if (response.ok) {
+                    // Check if the logged-in organiser owns this event
+                    if (eventToEdit.organiserEmail !== organiserEmail) {
+                        alert("You are not authorized to edit this event.");
+                        window.location.href = "Oevents.html"; // Redirect away
+                        return;
+                    }
+
+                    // Pre-fill the form fields
+                    eventTitleInput.value = eventToEdit.title || '';
+                    eventCategorySelect.value = eventToEdit.category || '';
+                    startDateInput.value = eventToEdit.startDate || '';
+                    startTimeInput.value = eventToEdit.startTime || '';
+                    endTimeInput.value = eventToEdit.endTime || '';
+                    sessionsInput.value = eventToEdit.sessions || '';
+                    locationEventSelect.value = eventToEdit.location || '';
+                    addressVenueInput.value = eventToEdit.addressVenue || '';
+                    infoTextarea.value = eventToEdit.info || '';
+
+                } else {
+                    alert("Error loading event for editing: " + (eventToEdit.message || "Event not found."));
+                    console.error("Error loading event:", eventToEdit);
+                    window.location.href = "Oevents.html"; // Redirect if event not found
+                }
+            } catch (error) {
+                console.error('Network or server error fetching event for edit:', error);
+                alert('Could not connect to the server to load event for editing.');
+                window.location.href = "Oevents.html";
+            }
+        }
+
+        // Handle form submission (Create or Update)
+        createEventForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const eventData = {
+                organiserEmail: organiserEmail, // Still need organiser email for ownership check on backend (optional)
+                title: eventTitleInput.value,
+                category: eventCategorySelect.value,
+                startDate: startDateInput.value,
+                startTime: startTimeInput.value,
+                endTime: endTimeInput.value,
+                sessions: sessionsInput.value,
+                location: locationEventSelect.value,
+                addressVenue: addressVenueInput.value,
+                info: infoTextarea.value
+            };
+
+            let url = 'http://localhost:3000/api/events';
+            let method = 'POST';
+
+            if (editId) {
+                url = `http://localhost:3000/api/events/${editId}`;
+                method = 'PUT';
+            }
+
+            console.log(`Sending ${method} request to ${url} with data:`, eventData);
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(eventData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message);
+                    console.log("[Form Submit] Event operation successful:", result.event);
+                    createEventForm.reset(); // Clear form after successful creation/update
+
+                    console.log("[Form Submit] Attempting redirection to:", "Oevents.html"); // <-- NEW LOG
+                    window.location.href = "Oevents.html";
+                    // Note: Code below window.location.href might not execute immediately
+                    console.log("[Form Submit] Redirection command issued."); // <-- NEW LOG
+                } else {
+                    alert("Error processing event: " + (result.message || "Unknown error"));
+                    console.error("[Form Submit] Event operation failed:", result);
+                }
+            } catch (error) {
+                console.error('[Form Submit] Network or server error during event operation:', error);
+                alert('Could not connect to the server.');
+            }
+        });
+    });
+  </script>
+</body>
+</html>

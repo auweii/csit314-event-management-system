@@ -105,13 +105,18 @@
     const result = await response.json();
     alert(result.message);
 
-    if (response.ok) {
-      window.location.href = "organiser-profile.html";
+    if (response.ok && result.organiser) {
+      // In login script (after successful login)
+      localStorage.setItem('organiserEmail', result.organiser.email);
+
+      window.location.href = "Ohomepage.html";
+
     }
   } catch (error) {
     alert('Error connecting to server.');
   }
 });
+
 
    
   </script>
