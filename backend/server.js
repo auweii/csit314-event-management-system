@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path'); 
 
+
 const apiRoutes = require('./routes/organisers.js'); 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', apiRoutes);
+app.use('/api/admin', require('./routes/admin'));
 // END Mounting
 
 app.get('/', (req, res) => {

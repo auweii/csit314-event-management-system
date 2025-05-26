@@ -12,5 +12,14 @@
     "password": "123",
     "dob": "2003-05-30",
     "address": "12 melrose avenue Liverpool, NSW, 2190"
+  },
+  {
+    "id": 996,
+    "fullName": "Draz",
+    "email": "tamim@gmail.com",
+    "password": "123",
+    "dob": "2003-05-30",
+    "address": "12 melrose avenue Liverpool, NSW, 2190",
+    "suspended": true
   }
 ]
