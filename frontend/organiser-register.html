@@ -77,46 +77,45 @@
 
     <div class="extra-links">
       <p>Have an account? <a href="organiser-login.html" class="small-link">Login</a></p>
-      <p>User? <a href="login.html" class="small-link">Login</a></p>
+      <p>USER? <a href="register.html" class="small-link">Sign Up</a></p>
     </div>
   </div>
   <script>
-  document.querySelector('.register-form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent the page from reloading
+    document.querySelector('.register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-    const fullName = e.target[0].value;
-    const email = e.target[1].value;
-    const password = e.target[2].value;
-    const confirmPassword = e.target[3].value;
+      const fullName = e.target[0].value;
+      const email = e.target[1].value;
+      const password = e.target[2].value;
+      const confirmPassword = e.target[3].value;
 
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
-    try {
-      const res = await fetch('http://localhost:3000/api/organisers/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ fullName, email, password })
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        alert('Registration successful!');
-        window.location.href = 'organiser-login.html'; // Redirect to login
-      } else {
-        alert(data.message || 'Registration failed');
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
       }
-    } catch (err) {
-      console.error(err);
-      alert('Error connecting to the server');
-    }
-  });
-</script>
 
+      try {
+        const response = await fetch('http://localhost:3000/api/organisers/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ fullName, email, password })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.message === 'Organiser registered successfully!') {
+          window.location.href = 'Ohomepage.html';  
+        } else {
+          alert(result.message || 'Registration failed');
+        }
+
+      } catch (error) {
+        alert('Error connecting to server.');
+        console.error(error);
+      }
+    });
+</script>
 </body>
 </html>

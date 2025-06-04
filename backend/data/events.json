@@ -68,5 +68,19 @@
     "addressVenue": "s",
     "info": "s",
     "createdAt": "2025-05-26T12:03:04.005Z"
+  },
+  {
+    "id": 1748863993014,
+    "organiserEmail": "z@gmail.com",
+    "title": "33",
+    "category": "technology",
+    "startDate": "33333-03-31",
+    "startTime": "15:33",
+    "endTime": "15:33",
+    "sessions": "33",
+    "location": "on-site",
+    "addressVenue": "3",
+    "info": "3",
+    "createdAt": "2025-06-02T11:33:13.014Z"
   }
 ]

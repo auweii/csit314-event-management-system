@@ -196,7 +196,7 @@
     </div>
 
     <nav>
-      <a href="homepage.html">Home</a>
+      <a href="Ohomepage.html">Home</a>
       <a href="OCreate-event.html">Create an Event</a>
       <a href="organiser-profile.html">Profile</a>
       <a href="Oevents.html">My Events</a> </nav>
@@ -207,6 +207,24 @@
     <div id="eventsContainer">
       <p class="no-events-message" id="loadingMessage">Loading your events...</p>
     </div>
+    <!-- Edit Event Form (initially hidden) -->
+<form id="editForm" style="display:none; margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 2rem;">
+  <h3>Edit Event</h3>
+  <input type="hidden" id="edit-id" />
+  <input type="text" id="edit-title" placeholder="Title" required />
+  <input type="text" id="edit-category" placeholder="Category" required />
+  <input type="date" id="edit-startDate" required />
+  <input type="time" id="edit-startTime" required />
+  <input type="time" id="edit-endTime" required />
+  <input type="text" id="edit-sessions" placeholder="Sessions" />
+  <input type="text" id="edit-location" placeholder="Location" required />
+  <input type="text" id="edit-addressVenue" placeholder="Venue" />
+  <textarea id="edit-info" placeholder="Additional Info"></textarea>
+  <br/><br/>
+  <button type="submit" style="padding: 0.5rem 1rem; background-color: #007bb5; color: white; border: none; border-radius: 4px; font-weight: 600;">Update Event</button>
+</form>
+
+
   </main>
 
   <script>
@@ -231,6 +249,7 @@
                 const events = await response.json();
 
                 loadingMessage.style.display = 'none'; // Hide loading message
+                events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
                 if (events.length === 0) {
                     eventsContainer.innerHTML = '<p class="no-events-message">You have not created any events yet.</p>';
@@ -295,7 +314,7 @@
                 }
             } else if (e.target.classList.contains('edit-btn')) {
                 // Redirect to the create-event page with the event ID as a query parameter
-                window.location.href = `OCreate-event.html?editId=${eventId}`;
+                
             }
         });
     });

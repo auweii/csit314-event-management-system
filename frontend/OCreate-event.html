@@ -174,7 +174,7 @@
     </div>
 
     <nav>
-      <a href="homepage.html">Home</a>
+      <a href="Ohomepage.html">Home</a>
       <a href="OCreate-event.html">Create an Event</a>
       <a href="organiser-profile.html">Profile</a>
       <a href="Oevents.html">My Events</a>
@@ -288,11 +288,7 @@
 
                 if (response.ok) {
                     // Check if the logged-in organiser owns this event
-                    if (eventToEdit.organiserEmail !== organiserEmail) {
-                        alert("You are not authorized to edit this event.");
-                        window.location.href = "Oevents.html"; // Redirect away
-                        return;
-                    }
+                  
 
                     // Pre-fill the form fields
                     eventTitleInput.value = eventToEdit.title || '';
@@ -356,12 +352,13 @@
                 const result = await response.json();
 
                 if (response.ok) {
+                    window.location.href = "Oevents.html";
+
                     alert(result.message);
                     console.log("[Form Submit] Event operation successful:", result.event);
                     createEventForm.reset(); // Clear form after successful creation/update
 
                     console.log("[Form Submit] Attempting redirection to:", "Oevents.html"); // <-- NEW LOG
-                    window.location.href = "Oevents.html";
                     // Note: Code below window.location.href might not execute immediately
                     console.log("[Form Submit] Redirection command issued."); // <-- NEW LOG
                 } else {
