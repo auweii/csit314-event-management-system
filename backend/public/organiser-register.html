@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | Event Booking</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .register-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 320px;
+      padding: 2rem;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-form input {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .register-form button {
+      padding: 0.75rem;
+      background-color: #61016e;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .register-form button:hover {
+      background-color: #710261;
+    }
+
+    .extra-links {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .small-link {
+      font-size: 0.8rem;
+      color: #007bff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <img src="logo.png" alt="Event Booking Logo" class="logo" />
+    <h2>Get started as an Organiser now!</h2>
+    <form class="register-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="extra-links">
+      <p>Have an account? <a href="organiser-login.html" class="small-link">Login</a></p>
+      <p>USER? <a href="register.html" class="small-link">Sign Up</a></p>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const fullName = e.target[0].value;
+      const email = e.target[1].value;
+      const password = e.target[2].value;
+      const confirmPassword = e.target[3].value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:3000/api/organisers/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ fullName, email, password })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.message === 'Organiser registered successfully!') {
+          window.location.href = 'Ohomepage.html';  
+        } else {
+          alert(result.message || 'Registration failed');
+        }
+
+      } catch (error) {
+        alert('Error connecting to server.');
+        console.error(error);
+      }
+    });
+</script>
+</body>
+</html>
