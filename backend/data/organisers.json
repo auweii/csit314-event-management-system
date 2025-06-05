@@ -1,8 +1,65 @@
 [
   {
     "id": 1747898827501,
-    "fullName": "Test User",
-    "email": "test@example.com",
-    "password": "123456"
+    "fullName": "Alice Smith",
+    "email": "alice.smith@example.com",
+    "password": "pass1234",
+    "suspended": true
+  },
+  {
+    "id": 1747898827502,
+    "fullName": "Bob Johnson",
+    "email": "bob.johnson@example.com",
+    "password": "qwerty"
+  },
+  {
+    "id": 1747898827503,
+    "fullName": "Charlie Lee",
+    "email": "charlie.lee@example.com",
+    "password": "abc123"
+  },
+  {
+    "id": 1747898827504,
+    "fullName": "Diana King",
+    "email": "diana.king@example.com",
+    "password": "kingd123"
+  },
+  {
+    "id": 1747898827505,
+    "fullName": "Ethan Brown",
+    "email": "ethan.brown@example.com",
+    "password": "brownie!"
+  },
+  {
+    "id": 1747898827506,
+    "fullName": "Fiona Clark",
+    "email": "fiona.clark@example.com",
+    "password": "password"
+  },
+  {
+    "id": 1747898827507,
+    "fullName": "George White",
+    "email": "george.white@example.com",
+    "password": "george123"
+  },
+  {
+    "id": 1747898827508,
+    "fullName": "Hannah Davis",
+    "email": "hannah.davis@example.com",
+    "password": "hannah@1"
+  },
+  {
+    "id": 1747898827509,
+    "fullName": "Ivan Scott",
+    "email": "ivan.scott@example.com",
+    "password": "ivanpass",
+    "suspended": true
+  },
+  {
+    "id": 1747898827510,
+    "fullName": "Jenna Adams",
+    "email": "jenna.adams@example.com",
+    "password": "jenna321",
+    "suspended": true
   }
 ]
