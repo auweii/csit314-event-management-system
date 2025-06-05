@@ -1,30 +1,22 @@
-//main file which will start the whole backend
+
 const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const path = require('path'); 
-
-
-const apiRoutes = require('./routes/organisers.js'); 
-
 const app = express();
-const PORT = 3000; 
+const userRoutes = require('./routes/user');
+const eventRoutes = require('./routes/event');
+const ticketRoutes = require('./routes/ticket');
+const notificationRoutes = require('./routes/notification');
 
 // Middleware
-app.use(cors()); 
-app.use(bodyParser.json()); 
+app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+// Routes
+app.use('/api/users', userRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/tickets', ticketRoutes);
+app.use('/api/notifications', notificationRoutes);
 
-app.use('/api', apiRoutes);
-app.use('/api/admin', require('./routes/admin'));
-// END Mounting
-
-app.get('/', (req, res) => {
-    res.send('Event Booking API server is running!');
-});
-
-// Start the server
+// Start Server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
