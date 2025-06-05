@@ -1,30 +1,35 @@
-//main file which will start the whole backend
+
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require('body-parser');
-const path = require('path'); 
-
-
-const apiRoutes = require('./routes/organisers.js'); 
-
+const cors = require('cors');
+const { validationResult } = require('express-validator');
+const { registerValidation, loginValidation } = require('./middleware/validationMiddleware');
+const { authenticate, authorize } = require('./middleware/authMiddleware');
+const { registerUser, loginUser } = require('./controllers/userController');
 const app = express();
-const PORT = 3000; 
 
-// Middleware
-app.use(cors()); 
-app.use(bodyParser.json()); 
+app.use(cors());
+app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+// Handle validation results
+const handleValidation = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+};
 
-app.use('/api', apiRoutes);
-app.use('/api/admin', require('./routes/admin'));
-// END Mounting
+// Public routes
+app.post('/register', registerValidation, handleValidation, registerUser);
+app.post('/login', loginValidation, handleValidation, loginUser);
 
-app.get('/', (req, res) => {
-    res.send('Event Booking API server is running!');
+// Protected test route
+app.get('/admin-only', authenticate, authorize(['admin']), (req, res) => {
+    res.json({ message: `Welcome, ${req.user.username}. You have admin access.` });
 });
 
-// Start the server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
