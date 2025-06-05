@@ -39,3 +39,22 @@ module.exports = {
     bookTicket,
     getUserHistory
 };
+
+
+// Example ticket creation handler (if not already present)
+const createTicket = (req, res) => {
+    const { userId, eventId, type, email } = req.body;
+    if (!userId || !eventId || !type || !email) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const query = 'INSERT INTO tickets (user_id, event_id, type) VALUES (?, ?, ?)';
+    db.run(query, [userId, eventId, type], function(err) {
+        if (err) return res.status(500).json({ error: 'Failed to book ticket' });
+
+        sendConfirmationEmail(email, 'Ticket Confirmation', `Your ticket for Event #${eventId} (${type}) has been booked.`);
+        res.status(201).json({ message: 'Ticket booked successfully', ticketId: this.lastID });
+    });
+};
+
+module.exports = { createTicket };
