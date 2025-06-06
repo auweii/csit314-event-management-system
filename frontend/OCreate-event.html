@@ -239,6 +239,26 @@
           <label for="address-venue">Address/Venue (if on-site)</label>
           <input type="text" id="address-venue" placeholder="e.g. Sydney Convention Centre, Hall 3">
         </div>
+        <div class="form-group">
+          <label for="event-image">Upload Event Image</label>
+          <input type="file" id="event-image" accept="image/*" />
+        </div>
+
+        <!-- New: Free or Ticketed Event -->
+        <div class="form-group">
+          <label>Event Type<span>*</span></label>
+          <select id="event-type" required>
+            <option value="" disabled selected>Select event type</option>
+            <option value="free">Free</option>
+            <option value="ticketed">Ticketed</option>
+          </select>
+        </div>
+
+        <!-- New: Ticket Price (conditionally visible) -->
+        <div class="form-group" id="ticket-price-group" style="display: none;">
+          <label for="ticket-price">Ticket Price ($)<span>*</span></label>
+          <input type="number" id="ticket-price" min="0" step="0.01" placeholder="Enter ticket price" />
+        </div>
 
         <div class="form-group">
           <label for="info">Additional Information<span>*</span></label>
@@ -268,6 +288,12 @@
         const locationEventSelect = document.getElementById('location-event');
         const addressVenueInput = document.getElementById('address-venue');
         const infoTextarea = document.getElementById('info');
+
+         const eventImageInput = document.getElementById("event-image");
+         const eventTypeSelect = document.getElementById("event-type");
+         const ticketPriceGroup = document.getElementById("ticket-price-group");
+         const ticketPriceInput = document.getElementById("ticket-price");
+
         const createEventForm = document.getElementById('createEventForm');
 
 
@@ -276,6 +302,17 @@
             window.location.href = "organiser-login.html";
             return;
         }
+         eventTypeSelect.addEventListener("change", () => {
+        if (eventTypeSelect.value === "ticketed") {
+          ticketPriceGroup.style.display = "block";
+          ticketPriceInput.required = true;
+        } else {
+          ticketPriceGroup.style.display = "none";
+          ticketPriceInput.required = false;
+          ticketPriceInput.value = "";
+        }
+      });
+
 
         if (editId) {
             formTitle.innerText = "Edit Event";
@@ -300,7 +337,14 @@
                     locationEventSelect.value = eventToEdit.location || '';
                     addressVenueInput.value = eventToEdit.addressVenue || '';
                     infoTextarea.value = eventToEdit.info || '';
-
+                     if (eventToEdit.eventType) {
+                      eventTypeSelect.value = eventToEdit.eventType;
+                      if (eventToEdit.eventType === "ticketed") {
+                        ticketPriceGroup.style.display = "block";
+                        ticketPriceInput.value = eventToEdit.ticketPrice || "";
+                        ticketPriceInput.required = true;
+                      }
+                     }
                 } else {
                     alert("Error loading event for editing: " + (eventToEdit.message || "Event not found."));
                     console.error("Error loading event:", eventToEdit);
@@ -313,12 +357,11 @@
             }
         }
 
-        // Handle form submission (Create or Update)
         createEventForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
             const eventData = {
-                organiserEmail: organiserEmail, // Still need organiser email for ownership check on backend (optional)
+                organiserEmail: organiserEmail, 
                 title: eventTitleInput.value,
                 category: eventCategorySelect.value,
                 startDate: startDateInput.value,
@@ -327,7 +370,9 @@
                 sessions: sessionsInput.value,
                 location: locationEventSelect.value,
                 addressVenue: addressVenueInput.value,
-                info: infoTextarea.value
+                info: infoTextarea.value,
+                eventType: eventTypeSelect.value,
+                ticketPrice: ticketPriceInput.value || "Free"
             };
 
             let url = 'http://localhost:3000/api/events';
@@ -356,11 +401,10 @@
 
                     alert(result.message);
                     console.log("[Form Submit] Event operation successful:", result.event);
-                    createEventForm.reset(); // Clear form after successful creation/update
+                    createEventForm.reset(); 
 
-                    console.log("[Form Submit] Attempting redirection to:", "Oevents.html"); // <-- NEW LOG
-                    // Note: Code below window.location.href might not execute immediately
-                    console.log("[Form Submit] Redirection command issued."); // <-- NEW LOG
+                    console.log("[Form Submit] Attempting redirection to:", "Oevents.html"); 
+                    console.log("[Form Submit] Redirection command issued."); 
                 } else {
                     alert("Error processing event: " + (result.message || "Unknown error"));
                     console.error("[Form Submit] Event operation failed:", result);
