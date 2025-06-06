@@ -1,33 +1,21 @@
-<<<<<<< Updated upstream
-=======
 // eventController.js:
 const path = require('path');
 const fs = require('fs');
->>>>>>> Stashed changes
 
-const eventModel = require('../models/eventModel');
+// Log the current working directory of the Node.js process at module load time
+console.log(`--- eventController.js Loaded ---`);
+console.log(`[Module Load] Current Working Directory (process.cwd()): ${process.cwd()}`);
 
-<<<<<<< Updated upstream
-const browseEvents = (req, res) => {
-    eventModel.getAllEvents((err, events) => {
-        if (err) return res.status(500).json({ message: 'Error retrieving events.' });
-        res.status(200).json(events);
-    });
-};
+const eventsFile = path.join(__dirname, '..', 'data', 'events.json');
+// Log the calculated absolute path to the events.json file at module load time
+console.log(`[Module Load] Calculated eventsFile path: ${eventsFile}`);
 
-const filterEvents = (req, res) => {
-    const { date, type, location } = req.query;
 
-    const filters = {
-        date: date || null,
-        type: type || null,
-        location: location || null
-=======
 // Helper to read events data
 const readEvents = () => {
     console.log(`[readEvents] Attempting to read file: ${eventsFile}`);
     if (!fs.existsSync(eventsFile)) {
-        console.warn(`[readEvents] File not found: ${eventsFile}. Returning empty array.`);
+        console.error(`[readEvents] CRITICAL: File DOES NOT EXIST at path: ${eventsFile}`);
         return [];
     }
     try {
@@ -38,14 +26,16 @@ const readEvents = () => {
         }
         const parsedData = JSON.parse(data);
         console.log(`[readEvents] Successfully read and parsed data. Number of events: ${parsedData.length}`);
+        // Log the IDs of the first few events to verify content
+        console.log(`[readEvents] First 3 event IDs found: ${parsedData.slice(0, 3).map(e => e.id).join(', ') || 'None'}`);
         return parsedData;
     } catch (error) {
-        console.error(`[readEvents] Error reading or parsing JSON file ${eventsFile}:`, error);
+        console.error(`[readEvents] ERROR: Failed to read or parse JSON file ${eventsFile}:`, error);
         return []; // Return empty array on error to prevent server crash
     }
 };
 
-// Helper to write events data
+// Helper to write events data (no change, but keeping logs for consistency)
 const writeEvents = (events) => {
     try {
         fs.writeFileSync(eventsFile, JSON.stringify(events, null, 2));
@@ -57,17 +47,8 @@ const writeEvents = (events) => {
 
 exports.createEvent = (req, res) => {
     const {
-        organiserEmail,
-        title,
-        category,
-        startDate,
-        startTime,
-        endTime,
-        sessions,
-        location,
-        addressVenue,
-        info,
-        ticketPrice
+        organiserEmail, title, category, startDate, startTime, endTime, sessions,
+        location, addressVenue, info, ticketPrice
     } = req.body;
 
     console.log('[createEvent] Received data:', req.body);
@@ -76,37 +57,22 @@ exports.createEvent = (req, res) => {
         return res.status(400).json({ message: 'Please fill all required fields: Organiser Email, Title, Category, Start Date, Start Time, Location, Info.' });
     }
 
-    const events = readEvents();
+    const events = readEvents(); // This will now log more details
 
     const newEvent = {
         id: Date.now(), // Generate numeric ID
-        organiserEmail,
-        title,
-        category,
-        startDate,
-        startTime,
-        endTime: endTime || '',
-        sessions: sessions || '',
-        location,
-        addressVenue: addressVenue || '',
-        info,
+        organiserEmail, title, category, startDate, startTime, endTime: endTime || '', sessions: sessions || '',
+        location, addressVenue: addressVenue || '', info,
         ticketPrice: (ticketPrice === undefined || ticketPrice === null || String(ticketPrice).trim() === '') ? 'Free' : parseFloat(ticketPrice).toFixed(2),
         createdAt: new Date().toISOString()
->>>>>>> Stashed changes
     };
 
-    eventModel.searchEvents(filters, (err, events) => {
-        if (err) return res.status(500).json({ message: 'Error filtering events.' });
-        res.status(200).json(events);
-    });
+    events.push(newEvent);
+    writeEvents(events); // This will now log more details
+
+    res.status(201).json({ message: 'Event created successfully!', event: newEvent });
 };
 
-<<<<<<< Updated upstream
-module.exports = {
-    browseEvents,
-    filterEvents
-};
-=======
 exports.getAllEvents = (req, res) => {
     const { organiserEmail } = req.query;
     console.log(`[getAllEvents] Request received. OrganiserEmail: ${organiserEmail || 'none'}`);
@@ -125,8 +91,9 @@ exports.getEventById = (req, res) => {
     console.log(`[getEventById] Request for ID: "${req.params.id}". Parsed ID: ${id} (Type: ${typeof id})`);
 
     const events = readEvents(); // This will log from readEvents helper
-    console.log(`[getEventById] Events array content for search (first 5 IDs): ${events.slice(0,5).map(e => e.id).join(', ') || 'none'}`);
-    console.log(`[getEventById] Full events array length: ${events.length}`);
+    console.log(`[getEventById] Looking for ID ${id} in events array of length ${events.length}.`);
+    // Log the IDs of the first few events to verify content *within* this request
+    console.log(`[getEventById] Events IDs being searched (first 5): ${events.slice(0,5).map(e => e.id).join(', ') || 'None'}`);
 
 
     const event = events.find(e => e.id === id);
@@ -159,10 +126,10 @@ exports.updateEvent = (req, res) => {
         organiserEmail: existingEvent.organiserEmail,
         createdAt: existingEvent.createdAt
     };
-    if (updatedData.ticketPrice !== undefined && updatedData.ticketPrice !== null && String(updatedData.ticketPrice).trim() !== '') {
-        events[index].ticketPrice = parseFloat(updatedData.ticketPrice).toFixed(2);
-    } else {
+    if (updatedData.ticketPrice !== undefined && updatedData.ticketPrice !== null && String(updatedData.ticketPrice).trim() === '') {
         events[index].ticketPrice = 'Free';
+    } else {
+        events[index].ticketPrice = parseFloat(updatedData.ticketPrice).toFixed(2);
     }
 
     writeEvents(events);
@@ -185,4 +152,3 @@ exports.deleteEvent = (req, res) => {
     writeEvents(events);
     res.json({ message: 'Event deleted successfully!' });
 };
->>>>>>> Stashed changes
