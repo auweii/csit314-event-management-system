@@ -35,13 +35,6 @@ const getUserHistory = (req, res) => {
     });
 };
 
-module.exports = {
-    bookTicket,
-    getUserHistory
-};
-
-
-// Example ticket creation handler (if not already present)
 const createTicket = (req, res) => {
     const { userId, eventId, type, email } = req.body;
     if (!userId || !eventId || !type || !email) {
@@ -57,4 +50,4 @@ const createTicket = (req, res) => {
     });
 };
 
-module.exports = { createTicket };
+module.exports = {bookTicket,getUserHistory, createTicket };

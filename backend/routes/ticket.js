@@ -3,7 +3,9 @@ const express = require('express');
 const router = express.Router();
 const ticketController = require('../controllers/ticketController');
 
-router.post('/book', ticketController.bookTicket);
-router.get('/history/:userId', ticketController.getUserHistory);
+const { authenticate } = require('../middleware/authMiddleware');
+router.post('/book', authenticate, ticketController.bookTicket);
+router.get('/history/:userId', authenticate, ticketController.getUserHistory);
+
 
 module.exports = router;

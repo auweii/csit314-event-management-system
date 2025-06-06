@@ -1,35 +1,44 @@
-
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
-const { validationResult } = require('express-validator');
-const { registerValidation, loginValidation } = require('./middleware/validationMiddleware');
-const { authenticate, authorize } = require('./middleware/authMiddleware');
-const { registerUser, loginUser } = require('./controllers/userController');
+const bodyParser = require('body-parser');
+
+// Load routes
+const userRoutes = require('./routes/user');
+const ticketRoutes = require('./routes/ticket');
+const notificationRoutes = require('./routes/notification');
+const eventRoutes = require('./routes/event');
+
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Handle validation results
-const handleValidation = (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+// Verbose request logger
+app.use((req, res, next) => {
+    console.log('📥 Incoming Request');
+    console.log('→ Method:', req.method);
+    console.log('→ Path:', req.originalUrl);
+    if (Object.keys(req.query).length) console.log('→ Query:', req.query);
+    if (req.method !== 'GET' && Object.keys(req.body).length) console.log('→ Body:', req.body);
+    console.log('-------------------------------');
     next();
-};
-
-// Public routes
-app.post('/register', registerValidation, handleValidation, registerUser);
-app.post('/login', loginValidation, handleValidation, loginUser);
-
-// Protected test route
-app.get('/admin-only', authenticate, authorize(['admin']), (req, res) => {
-    res.json({ message: `Welcome, ${req.user.username}. You have admin access.` });
 });
 
+// API Routes
+app.use('/api/users', userRoutes);
+app.use('/api/tickets', ticketRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/events', eventRoutes);
+
+// Error handler for unknown endpoints
+app.use((req, res) => {
+    console.warn('⚠️ Unknown Endpoint:', req.originalUrl);
+    res.status(404).json({ error: 'Endpoint not found' });
+});
+
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
