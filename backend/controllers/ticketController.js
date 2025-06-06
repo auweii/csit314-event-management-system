@@ -1,5 +1,6 @@
 
 const ticketModel = require('../models/ticketModel');
+const notificationModel=require('../models/notificationModel');
 
 const bookTicket = (req, res) => {
     const { userId, eventId, type } = req.body;
