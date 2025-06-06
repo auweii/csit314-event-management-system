@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Bookings</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #710261;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .banner {
+      background-image: url("images/lanterns.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner h1 {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+    }
+
+    .booking-list {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .booking-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .booking-card h3 {
+      margin: 0 0 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .booking-card p {
+      margin: 0.25rem 0;
+    }
+
+    .cancel-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #710261;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .cancel-btn:hover {
+      color: #a10089;
+    }
+ 
+    .booking-card .event-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+  
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Our logo</div>
+  
+      <nav>
+        <a href="homepage.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="profile.html">Profile</a>
+        <a href="#">My Bookings</a>
+        <a href="register.html">Sign Up</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+  
+        <div class="banner">
+          <h1>Your bookings</h1>
+        </div>
+    
+  
+    <div class="booking-list">
+      <div class="booking-card">
+        <img src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848c?auto=format&fit=crop&w=1500&q=80" alt="Event 1 Image" class="event-image">
+        <h3>Jazz Night on the Rooftop</h3>
+        <p><strong>Date:</strong> Saturday, April 27, 2025</p>
+        <p><strong>Time:</strong> 7:00 PM</p>
+        <p><strong>Location:</strong> 123 Jazz St, Sydney</p>
+        <button class="cancel-btn" onclick="window.location.href='cancel-booking.html'">❌ Cancel</button>
+      </div>
+  
+      <div class="booking-card">
+        <img src="https://images.unsplash.com/photo-1601997499266-115d56d6b03b?auto=format&fit=crop&w=1200&q=80" alt="Event 2 Image" class="event-image">
+        <h3>Rock Concert at The Arena</h3>
+        <p><strong>Date:</strong> Friday, May 5, 2025</p>
+        <p><strong>Time:</strong> 8:00 PM</p>
+        <p><strong>Location:</strong> The Arena, Melbourne</p>
+        <button class="cancel-btn" onclick="window.location.href='cancel-booking.html'">❌ Cancel</button>
+      </div>
+  
+      <div class="booking-card">
+        <img src="https://images.unsplash.com/photo-1530050400271-0fe859fbdc24?auto=format&fit=crop&w=1000&q=80" alt="Event 3 Image" class="event-image">
+        <h3>Comedy Night at The Comedy Club</h3>
+        <p><strong>Date:</strong> Wednesday, June 15, 2025</p>
+        <p><strong>Time:</strong> 9:00 PM</p>
+        <p><strong>Location:</strong> The Comedy Club, Brisbane</p>
+        <button class="cancel-btn" onclick="window.location.href='cancel-booking.html'">❌ Cancel</button>
+      </div>
+    </div>
+  
+  </body>
+  </html>
+  

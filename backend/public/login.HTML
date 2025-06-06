@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | Event Booking</title>
 
-  <!-- CSS goes right here inside <style> -->
   <style>
     body {
       margin: 0;
@@ -74,7 +73,7 @@
   <div class="login-container">
     <img src="logo.png" alt="Event Booking Logo" class="logo" />
 
-    <h2>Welcome Back, Organiser!</h2>
+    <h2>Welcome Back!</h2>
     <form class="login-form">
       <input type="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />
@@ -83,43 +82,9 @@
       
     </form>
     <div class="extra-links">
-      <p>Don't have an account? <a href="organiser-register.html" class="small-link">Sign up</a></p>
-      <p>USER? <a href="login.html" class="small-link">Login</a></p>
-
+      <p>Don't have an account? <a href="register.html" class="small-link">Sign up</a></p>
+      <p>Organiser? <a href="organiser-login.html" class="small-link">Click here</a></p>
     </div>
   </div>
-  <script>
-    document.querySelector('.login-form').addEventListener('submit', async function (e) {
-  e.preventDefault();  // THIS MUST PREVENT FORM FROM RELOADING THE PAGE
-  console.log('Form submitted!'); 
-  const email = e.target[0].value;
-  const password = e.target[1].value;
-
-  try {
-    const response = await fetch('http://localhost:3000/api/organisers/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-
-    const result = await response.json();
-    alert(result.message);
-
-    if (response.ok && result.organiser) {
-      // In login script (after successful login)
-      localStorage.setItem('organiserEmail', result.organiser.email);
-
-      window.location.href = "Ohomepage.html";
-
-    }
-  } catch (error) {
-    alert('Error connecting to server.');
-  }
-});
-
-
-   
-  </script>
-  
 </body>
 </html>

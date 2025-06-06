@@ -1,33 +1,5 @@
 [
   {
-    "id": 1748260518207,
-    "organiserEmail": "s@gmail.com",
-    "title": "Annual Tech Conference",
-    "category": "technology",
-    "startDate": "2025-05-27",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "sessions": "Session 1",
-    "location": "on-site",
-    "addressVenue": "Sydney Convention Hall",
-    "info": "Enjoy technology!",
-    "createdAt": "2025-05-26T11:55:18.207Z"
-  },
-  {
-    "id": 1748260695925,
-    "organiserEmail": "s@gmail.com",
-    "title": "Annual Tech Conference",
-    "category": "technology",
-    "startDate": "0009-04-27",
-    "startTime": "03:09",
-    "endTime": "10:00",
-    "sessions": "Session 1",
-    "location": "on-site",
-    "addressVenue": "Sydney Convention Hall",
-    "info": "1",
-    "createdAt": "2025-05-26T11:58:15.925Z"
-  },
-  {
     "id": 1748260733353,
     "organiserEmail": "s@gmail.com",
     "title": "2",
@@ -42,8 +14,8 @@
     "createdAt": "2025-05-26T11:58:53.353Z"
   },
   {
-    "id": 1748260807596,
-    "organiserEmail": "s@gmail.com",
+    "id": 17482608077596,
+    "organiserEmail": "ss@gmail.com",
     "title": "a",
     "category": "sports",
     "startDate": "2025-05-26",
@@ -56,17 +28,45 @@
     "createdAt": "2025-05-26T12:00:07.596Z"
   },
   {
-    "id": 1748260984005,
-    "organiserEmail": "s@gmail.com",
-    "title": "s",
-    "category": "sports",
-    "startDate": "2025-05-26",
-    "startTime": "12:30",
-    "endTime": "12:30",
-    "sessions": "se",
+    "id": 17482605178207,
+    "organiserEmail": "s@sgmail.com",
+    "title": " Tech ",
+    "category": "technology",
+    "startDate": "2025-05-27",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "sessions": "Session 1",
     "location": "on-site",
-    "addressVenue": "s",
-    "info": "s",
-    "createdAt": "2025-05-26T12:03:04.005Z"
+    "addressVenue": "Sydney Convention Hall",
+    "info": "Enjoy technology!",
+    "createdAt": "2025-05-26T11:55:18.207Z"
+  },
+  {
+    "id": 17482605518207,
+    "organiserEmail": "s@gmail.com",
+    "title": " club ",
+    "category": "technology",
+    "startDate": "2025-05-27",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "sessions": "Session 1",
+    "location": "on-site",
+    "addressVenue": "Sydney Convention Hall",
+    "info": "Enjoy technology!",
+    "createdAt": "2025-05-26T11:55:18.207Z"
+  },
+  {
+    "id": 17482605418207,
+    "organiserEmail": "s@gmail.com",
+    "title": "Annual Tech Confetttttrence",
+    "category": "technology",
+    "startDate": "2025-05-27",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "sessions": "Session 1",
+    "location": "on-site",
+    "addressVenue": "Sydney Convention Hall",
+    "info": "Enjoy technology!",
+    "createdAt": "2025-05-26T11:55:18.207Z"
   }
 ]

@@ -66,7 +66,7 @@
 <body>
   <div class="register-container">
     <img src="logo.png" alt="Event Booking Logo" class="logo" />
-    <h2>Get started as an Organiser now!</h2>
+    <h2>Get started now!</h2>
     <form class="register-form">
       <input type="text" placeholder="Full Name" required />
       <input type="email" placeholder="Email" required />
@@ -76,46 +76,9 @@
     </form>
 
     <div class="extra-links">
-      <p>Have an account? <a href="organiser-login.html" class="small-link">Login</a></p>
-      <p>USER? <a href="register.html" class="small-link">Sign Up</a></p>
+      <p>Have an account? <a href="login.html" class="small-link">Login</a></p>
+      <p>Organiser? <a href="oregister.html" class="small-link">Click here</a></p>
     </div>
   </div>
-  <script>
-    document.querySelector('.register-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const fullName = e.target[0].value;
-      const email = e.target[1].value;
-      const password = e.target[2].value;
-      const confirmPassword = e.target[3].value;
-
-      if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
-      }
-
-      try {
-        const response = await fetch('http://localhost:3000/api/organisers/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ fullName, email, password })
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.message === 'Organiser registered successfully!') {
-          window.location.href = 'Ohomepage.html';  
-        } else {
-          alert(result.message || 'Registration failed');
-        }
-
-      } catch (error) {
-        alert('Error connecting to server.');
-        console.error(error);
-      }
-    });
-</script>
 </body>
 </html>
